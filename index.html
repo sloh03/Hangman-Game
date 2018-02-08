@@ -2,16 +2,65 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="UTF-8">
-    <title>Arrays Demo</title>
-  </head>
-  <body>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<!-- Reset CSS -->
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Customize CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<!-- JS -->
     <script src="assets/javascript/game.js">	
     </script>
+	
+	<!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
 
-    
+    <title>Hangman Game</title>
+
+  </head>
+
+  <body onload="startUp()">
+
+	<h1>HANGMAN</h1>
+	<h2>SPACE THEME</h2>
+
+	<br>
+
+	
+	<div class="row">
+		<div class="col-lg-5 col-sm-0"></div>
+
+		<div class="col-lg-2" class="well">
+			<h4>Press any key to get started</h4>
+			<br>
+		    <h4>Wins</h4>
+		    <br>
+		    	<p id="wins"></p>
+
+		    <h4>Current Word</h4>
+				<p id="word-spaces"></p>
+
+		    <h4>Number of Guesses Remaining</h4>
+		    	<p id="guesses-remaining"></p>
+
+		    <h4>Letters Already Guessed</h4>
+		    	<p id="incorrect-guesses"></p>
+		</div>
+		<div class="col-lg-5 col-sm-0"></div>
+	</div>
+
 
   </body>
 
  </html>
+
+ <!DOCTYPE html>
+<html lang="en-us">

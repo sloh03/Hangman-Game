@@ -1,0 +1,24 @@
+/********************
+GENERAL
+********************/
+
+	body {
+		background-image: url('darkness/darkness.png');
+		color: #fff;
+	}
+
+	h1 {
+		font-family: 'Monoton', cursive;
+		text-align: center;
+		font-size: 5em;
+		color: #2bdbf7;
+	}
+
+	h2 {
+		text-align: center;
+		color: #e62cf7;
+		font-style: italic;
+		font-family: 'Rajdhani', sans-serif;
+		font-size: 3em;
+	}
+
