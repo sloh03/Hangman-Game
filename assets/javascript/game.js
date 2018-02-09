@@ -8,7 +8,6 @@
 	// Variables holding number of wins and guesses available
     var wins = 0;
     
-
 */
 
 var answerArray = [];
@@ -52,8 +51,8 @@ document.onkeyup = function(event) {
 
 	// Check if key pressed has been pressed before 
 	// If (pressed before) 
-	if (keysPressed_PrivateArray.indexOf(userGuessUpper) === -1) {  // *** NOT WORKING, STILL TAKING GUESSES AWAY ***
-		// Do nothing
+	if (keysPressed_PrivateArray.indexOf(userGuessUpper) === -1) {  // *** fixed this (removed === -1) and letters already guessed stopped printing ***
+		alert("letter");// Do nothing
 	} 
 
 	// Else (not used)
@@ -67,15 +66,25 @@ document.onkeyup = function(event) {
 		// If key pressed is in word
 		if (currentWord.includes(userGuessUpper)) { // *** APPROPRIATE USE? ***
 			// Find the indices of the guess in the word
-			var a=[]; // *** WHERE CAN I FIND CONTENTS OF THIS ARRAY? SHOWS EMPTY IN CONSOLE.LOG ***
+			var a = [];// *** WHERE CAN I FIND CONTENTS OF THIS ARRAY? SHOWS EMPTY IN CONSOLE.LOG ***
 			function locations(substring, string) {
 				i=-1;
 				while((i=string.indexOf(substring, i+1)) >= 0) a.push(i);
 				return a;
 			}
+			//push to right array*, else push to wrong
+			var a = locations(userGuessUpper, currentWord);
+			// alert(a);
 
-			console.log(locations(userGuessUpper, currentWord));
+
+			for (var i = a.length - 1; i >= 0; i--) {
+				currentWord[a[i]] = userGuessUpper;
+				alert(currentWord[a[i]]);
+			}
+
+
 			// Change corresponding '_' to key pressed
+			// Loop through the word and change the letter to letter guessed at the indices
 				/* var ? = '_ _ _ _' */ // *** WHAT VARIABLE IS HOLDING THE SPACES NOW? ***
 				/* ?.replaceAt(a, userGuessUpper) */ // *** DOES A HOLD THE INDEX NOW? CAN THIS BE SET TO A VARIABLE? ***
 				/* document.getElementById("word-spaces").innerHTML = ?; */ // REPLACE ? WITH VARIABLE HOLDING CHANGE.
@@ -103,22 +112,21 @@ document.onkeyup = function(event) {
 
 			/* document.getElementById("incorrect-guesses").innerHTML = incorrectGuessesDisplay; */
 		}
-				
+		
+	// When guesses remaining = 0
+
+		// Restart game
+
+	// When all letters in word are matched
+
+		// Add 1 to Wins
+
+		// Restart game		
 	}
 
 }
 
-// When guesses remaining = 0
 
-	// Display game over
-
-	// Restart game
-
-// When all letters in word are matched
-
-	// Display you win
-
-	// Restart game
 
 
 
