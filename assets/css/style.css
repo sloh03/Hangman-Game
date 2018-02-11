@@ -1,38 +1,41 @@
-/********************
-GENERAL
-********************/
 
-	body {
-		background-image: url('darkness/darkness.png');
-		color: #fff;
-		margin-top: 5%;
-	}
+body {
+	background-image: url('darkness/darkness.png');
+	color: #fff;
+	margin-top: 2%;
+}
 
-	h1 {
-		font-family: 'Monoton', cursive;
-		text-align: center;
-		font-size: 5em;
-		color: #2bdbf7;
-	}
+/* Hangman */
+h1 {
+	font-family: 'Monoton', cursive;
+	text-align: center;
+	font-size: 4.5em;
+	color: #2bdbf7;
+}
 
-	h2 {
-		text-align: center;
-		color: #e62cf7;
-		font-style: italic;
-		font-family: 'Rajdhani', sans-serif;
-		font-size: 3em;
-	}
+/* Space Theme */
+h2 {
+	text-align: center;
+	color: #e62cf7;
+	font-style: italic;
+	font-family: 'Rajdhani', sans-serif;
+	font-size: 3em;
+}
 
-	.game {
-		font-family: 'Open Sans', sans-serif;
-		font-size: 1.5em;
-		line-height: 2;
-		text-align: center;
-	}
-	#start {
-		font-style: italic;
-	}
+/* Game area */
+.game {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.5em;
+	line-height: 1.75;
+	text-align: center;
+}
 
-	h4 {
-		font-size: .75em;
-	}
+/* Instructions */
+#start {
+	font-style: italic;
+}
+
+/* Game area titles */
+h4 {
+	font-size: .75em;
+}

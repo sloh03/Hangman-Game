@@ -13,8 +13,6 @@ var incorrectGuesses = [];
 var answerArray = [];
 var remainingLetters = [];
 
-var isMatch = null;
-
 var guessesRemaining = 15; 
 var wins = 0;
 var losses = 0;
@@ -84,7 +82,7 @@ document.onkeyup = function(event) {
 			correctGuesses.push(userGuess);
 			console.log("Correct guesses: " + correctGuesses);
 
-			// Convert '_' to letter -- NOT WORKING
+			// Convert '_' to letter
 			for (var j = 0; j < currentWord.length; j++) {
 				if (currentLetters[j] === userGuess) {
 					answerArray[j] = userGuess;
@@ -97,12 +95,16 @@ document.onkeyup = function(event) {
 		}
 	}
 	// RESTART ON WIN OR LOSS
+	// Add win and restart
 	if (remainingLetters === 0) {
 		wins++;
 		document.getElementById("wins").innerHTML = wins;
 		startUp();
 	}
+	// Add loss and restart
 	if (guessesRemaining === 0) {
+		losses++;
+		document.getElementById("losses").innerHTML = losses;
 		startUp();
 	}
 }
