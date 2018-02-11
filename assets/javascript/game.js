@@ -20,29 +20,30 @@ var wins = 0;
 var losses = 0;
 
 
-// GENERATE WORD
-// Choose a random word
-currentWord = words[Math.floor(Math.random() * words.length)];
-
-// Split current word into array of letters
-currentLetters = currentWord.split("");
-console.log(currentWord + " " + currentLetters);
-
 // At start of game
 function startUp() {
-  	for (var i = 0; i < currentWord.length; i++) {
+
+	// GENERATE WORD
+	// Choose a random word
+	currentWord = words[Math.floor(Math.random() * words.length)];
+
+	// Split current word into array of letters
+	currentLetters = currentWord.split("");
+	console.log(currentWord + " " + currentLetters);
+
+	// Display corresponding number of spaces
+  	for (var i = 0; i < currentLetters.length; i++) {
     	answerArray[i] = "_";
 	}
-	remainingLetters = currentWord.length;
+	document.getElementById("word-spaces").innerHTML = answerArray.join(" ");
 
-	answerArray = answerArray.join(" ");
-	document.getElementById("word-spaces").innerHTML = answerArray;
-
+	// Reset variables upon word generation
+	// Set amount of letters left to guess to word length
+	remainingLetters = currentLetters.length;
 	newGuesses = []; 
 	incorrectGuesses = [];
 	correctGuesses = [];
 	correctGuessesDisplay = [];
-
 	guessesRemaining = 15;
 	document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
 }
@@ -68,57 +69,75 @@ document.onkeyup = function(event) {
 		document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
 
 		// CHECK FOR MATCHES
-		// If guess is not a match, diplay as 'Letters Already Guessed'
+		// If guess is not a match
 		if (currentLetters.indexOf(userGuess) == -1) {
+			// Store letter in 'incorrectGuesses' array
 			incorrectGuesses.push(userGuess);
-			console.log("Incorrect guesses: " + incorrectGuesses);
+			// Display in 'Letters Already Guessed' area on screen
 			document.getElementById("incorrect-guesses").innerHTML = incorrectGuesses;
 		}
-		// If it is a match
+		// If guess is a match
 		else {
+			// Store letter in 'correctGuesses' array
 			correctGuesses.push(userGuess);
 			console.log("Correct guesses: " + correctGuesses);
 
+			// Convert '_' to letter -- NOT WORKING
 			for (var j = 0; j < currentWord.length; j++) {
 				if (currentLetters[j] === userGuess) {
 					answerArray[j] = userGuess;
 					remainingLetters--;
+					document.getElementById("word-spaces").innerHTML = answerArray.join(" ");
 					console.log(remainingLetters);
 					console.log("Answer Array: " + answerArray);
+					if () {
+						
+					}
 				}
 			}
-       	}
+		}
 	}
-
-
 }
-
-
 
 
 /*
 
-		if (correctGuesses.length == 0) {
-			for (var i = 0; i < currentLetters.length; i++) {
-				correctGuessesDisplay[i] = "_";
-			}
-		} 
-		else {
-			for (var i = 0; i < currentLetters.length; i++) {
-				if (correctGuessesDisplay[i] != currentLetters[i]) {
-					for (var j = 0; j < correctGuesses.length; j++) {
-						if (correctGuesses[j] == currentLetters[i]) {
-							correctGuessesDisplay[i] == currentLetters[i];
-							document.getElementById("word-spaces").innerHTML = correctGuessesDisplay.join(" ");
-						}
-						else {
-							correctGuessesDisplay[i] = "_";
-						}
-					}	
+			
+// COVERT SPACE TO LETTER
+
+// Attempt 1
+for (var i = 0; i < currentWord.length; i++) {
+				if (currentWord[i] === userGuess) {
+					answerArray[i] = userGuess;
+					document.getElementById("word-spaces").innerHTML = answerArray;
+					console.log("Answer Array: " + answerArray);
 				}
 			}
+
+
+// Attempt 2
+if (correctGuesses.length == 0) {
+	for (var i = 0; i < currentLetters.length; i++) {
+		correctGuessesDisplay[i] = "_";
+	}
+} 
+else {
+	for (var i = 0; i < currentLetters.length; i++) {
+		if (correctGuessesDisplay[i] != currentLetters[i]) {
+			for (var j = 0; j < correctGuesses.length; j++) {
+				if (correctGuesses[j] == currentLetters[i]) {
+					correctGuessesDisplay[i] == currentLetters[i];
+					document.getElementById("word-spaces").innerHTML = correctGuessesDisplay.join(" ");
+				}
+				else {
+					correctGuessesDisplay[i] = "_";
+				}
+			}	
 		}
-		
+	}
+}
+
+
 		document.getElementById("wins").innerHTML = (wins);
 		for (var i=0; i < allGuesses.length; i++) {
 			
