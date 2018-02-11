@@ -1,67 +1,145 @@
-/*
+var words = ['MERCURY', 'JUPITER', 'ECLIPSE', 'GALAXY', 'ASTEROID', 'NEBULA', 'EUROPA', 'COMET']
+var currentWord;
+var currentLetters = [];
 
-	// Array of all options of guesses
-	var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-        'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-        't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
-	// Variables holding number of wins and guesses available
-    var wins = 0;
-    
-*/
+var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
+'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var userGuess;
+var newGuesses = []; 
+var correctGuesses = [];
+var incorrectGuesses = [];
 
 var answerArray = [];
-var combineSpaces;
+var remainingLetters = [];
 
-var keysPressed_PrivateArray = []; // Contains all keys pressed
+var isMatch = null;
 
 var guessesRemaining = 15; 
+var wins = 0;
+var losses = 0;
 
 
-// Array of the word bank
-var words = ['MERCURY', 'JUPITER', 'ECLIPSE', 'GALAXY', 'ASTEROID', 'NEBULA', 'EUROPA', 'COMET']
+// GENERATE WORD
+// Choose a random word
+currentWord = words[Math.floor(Math.random() * words.length)];
 
-// This function will randomly select a word from the wordbank
-var currentWord = words[Math.floor(Math.random() * words.length)];
-console.log(currentWord);
+// Split current word into array of letters
+currentLetters = currentWord.split("");
+console.log(currentWord + " " + currentLetters);
 
-
-
-//ON PAGE LOAD
-// Count the amount of letters in the word and show in spaces '_' on page
+// At start of game
 function startUp() {
-  for (var i = 0; i < currentWord.length; i++) {
-    answerArray[i] = "_";
-  }
-  combineSpaces = answerArray.join(" ");
-  document.getElementById("word-spaces").innerHTML = combineSpaces;
+  	for (var i = 0; i < currentWord.length; i++) {
+    	answerArray[i] = "_";
+	}
+	remainingLetters = currentWord.length;
+
+	answerArray = answerArray.join(" ");
+	document.getElementById("word-spaces").innerHTML = answerArray;
+
+	newGuesses = []; 
+	incorrectGuesses = [];
+	correctGuesses = [];
+	correctGuessesDisplay = [];
+
+	guessesRemaining = 15;
+	document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
+}
+
+// USER INPUT
+// Whenever the user presses a key
+document.onkeyup = function(event) {
+
+	// Determine which key is pressed 
+	// Change to upper case
+	var userGuess = event.key; 
+	userGuess = userGuess.toUpperCase();
+
+	// If guess has not been used before and is a valid letter
+	if (newGuesses.indexOf(userGuess) == -1 && (alphabet.indexOf(userGuess) != -1) ) {
+
+		// Store in array 'newGuesses'
+		newGuesses.push(userGuess);
+		console.log("New valid guesses: " + newGuesses);
+
+		// Remove a remaining guess
+		guessesRemaining--;
+		document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
+
+		// CHECK FOR MATCHES
+		// If guess is not a match, diplay as 'Letters Already Guessed'
+		if (currentLetters.indexOf(userGuess) == -1) {
+			incorrectGuesses.push(userGuess);
+			console.log("Incorrect guesses: " + incorrectGuesses);
+			document.getElementById("incorrect-guesses").innerHTML = incorrectGuesses;
+		}
+		// If it is a match
+		else {
+			correctGuesses.push(userGuess);
+			console.log("Correct guesses: " + correctGuesses);
+
+			for (var j = 0; j < currentWord.length; j++) {
+				if (currentLetters[j] === userGuess) {
+					answerArray[j] = userGuess;
+					remainingLetters--;
+					console.log(remainingLetters);
+					console.log("Answer Array: " + answerArray);
+				}
+			}
+       	}
+	}
+
+
 }
 
 
 
-// This function is run whenever the user presses a key
-document.onkeyup = function(event) {
 
-	// Determine which key is pressed, change to upper case and store in array containing all guesses
-	var userGuess = event.key; 
-	var userGuessUpper = userGuess.toUpperCase();
+/*
 
-	keysPressed_PrivateArray.push(userGuessUpper);
-	console.log(keysPressed_PrivateArray);
+		if (correctGuesses.length == 0) {
+			for (var i = 0; i < currentLetters.length; i++) {
+				correctGuessesDisplay[i] = "_";
+			}
+		} 
+		else {
+			for (var i = 0; i < currentLetters.length; i++) {
+				if (correctGuessesDisplay[i] != currentLetters[i]) {
+					for (var j = 0; j < correctGuesses.length; j++) {
+						if (correctGuesses[j] == currentLetters[i]) {
+							correctGuessesDisplay[i] == currentLetters[i];
+							document.getElementById("word-spaces").innerHTML = correctGuessesDisplay.join(" ");
+						}
+						else {
+							correctGuessesDisplay[i] = "_";
+						}
+					}	
+				}
+			}
+		}
+		
+		document.getElementById("wins").innerHTML = (wins);
+		for (var i=0; i < allGuesses.length; i++) {
+			
+		}
+
+		if (keysPressedTotal.indexOf(userGuessUpper) === -1) { //new letter
+			//Add to list of guessed letters
+			var newKeysPressed = [];
+			newKeysPressed.push(userGuessUpper);
+			console.log(newKeysPressed);
 
 	// Check if key pressed has been pressed before 
-	// If (pressed before) 
-	if (keysPressed_PrivateArray.indexOf(userGuessUpper) === -1) {  // *** fixed this (removed === -1) and letters already guessed stopped printing ***
-		alert("letter");// Do nothing
-	} 
-
-	// Else (not used)
-	else {
+	// If key has not been pressed before
+	if (keysPressedTotal.indexOf(userGuessUpper) === -1) {  
+		
+	}
 
 		// Take away 1 guesses remaining
 		guessesRemaining -= 1;
 		document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
-		
+
 		// Check if key pressed is in word
 		// If key pressed is in word
 		if (currentWord.includes(userGuessUpper)) { // *** APPROPRIATE USE? ***
@@ -90,7 +168,7 @@ document.onkeyup = function(event) {
 				/* document.getElementById("word-spaces").innerHTML = ?; */ // REPLACE ? WITH VARIABLE HOLDING CHANGE.
 
 			// Place correct guesses in array
-			var matched_PrivateArray = []; // *** WHY ONLY STORING 1 LETTER AT A TIME? ***
+/*			var matched_PrivateArray = []; // *** WHY ONLY STORING 1 LETTER AT A TIME? ***
 			matched_PrivateArray.push(userGuessUpper);
 			console.log(matched_PrivateArray);
 		}
@@ -100,18 +178,18 @@ document.onkeyup = function(event) {
 			// Display letter in 'letters already guessed' area on screen after filtering duplicates and correct guesses
 			// Filter duplicates from original array	
 			var uniq = [];
-			var uniq = keysPressed_PrivateArray.reduce(function(a,b) { // *** WHY ONLY FILTERS IF FIRST LETTER PRESSED IS DUPLICATE? ***
+			var uniq = keysPressedTotal.reduce(function(a,b) { // *** WHY ONLY FILTERS IF FIRST LETTER PRESSED IS DUPLICATE? ***
 				if (a.indexOf(b) < 0 ) a.push(b);
 				return a;
 			},[]);
-			console.log(uniq, keysPressed_PrivateArray);
+			console.log(uniq, keysPressedTotal);
 			document.getElementById("incorrect-guesses").innerHTML = uniq; // Temporary testing, remove after filter out correct guesses
 
 			// Filter out correct guesses
 
 
 			/* document.getElementById("incorrect-guesses").innerHTML = incorrectGuessesDisplay; */
-		}
+		
 		
 	// When guesses remaining = 0
 
@@ -122,9 +200,9 @@ document.onkeyup = function(event) {
 		// Add 1 to Wins
 
 		// Restart game		
-	}
+/*	} */
 
-}
+
 
 
 
