@@ -8,6 +8,9 @@
 	<!-- Reset CSS -->
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 	<!-- Customize CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
@@ -24,29 +27,27 @@
 
   </head>
   <body onload="startUp()">
-	<h1>HANGMAN</h1>
-	<h2>SPACE THEME</h2>
-	<br>
-	<div>
-		<div class="game">
+		<h1>HANGMAN</h1>
+		<h2>SPACE THEME</h2>
+		<div class="game" class="row">
 
-			<h4 id = "start">Press any key to start</h4>
+				<h4 id = "start">Press any key to start</h4>
 
-		    <h4>Wins</h4>
+				<h4>Wins</h4>
 				<p id="wins"></p>
 
-			<h4>Losses</h4>
+				<h4>Losses</h4>
 				<p id="losses"></p>
 
-		    <h4>Current Word</h4>
+				<h4>Current Word</h4>
 				<p id="word-spaces"></p>
 
-		    <h4>Number of Guesses Remaining</h4>
+				<h4>Number of Guesses Remaining</h4>
 				<p id="guesses-remaining"></p>
 				
-		    <h4>Letters Already Guessed</h4>
-		    	<p id="incorrect-guesses"></p>
+				<h4>Letters Already Guessed</h4>
+				<p id="incorrect-guesses"></p>
+					
 		</div>
-	</div>
   </body>
  </html>
