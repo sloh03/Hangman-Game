@@ -1,10 +1,38 @@
-var words = ['MERCURY', 'JUPITER', 'ECLIPSE', 'GALAXY', 'ASTEROID', 'NEBULA', 'EUROPA', 'COMET', 'ASTRONAUT', 'SPACESHIP', 'PLANET', 'PLUTO', 'SUPERNOVA', 'ORBIT', 'SATURN', 'VENUS', 'EARTH', 'MARS', 'WORMHOLE', 'STAR' ]
+var words = [
+	'MERCURY', 
+	'JUPITER', 
+	'ECLIPSE', 
+	'GALAXY', 
+	'ASTEROID', 
+	'NEBULA',
+	'METEOR', 
+	'EUROPA',
+	'SATELLITE',
+	'COMET', 
+	'ASTRONAUT', 
+	'SPACESHIP',
+	'URANUS',
+	'NEPTUNE', 
+	'PLANET',
+	'MOON',
+	'TITAN', 
+	'PLUTO', 
+	'SUPERNOVA', 
+	'ORBIT', 
+	'SATURN', 
+	'VENUS', 
+	'EARTH', 
+	'MARS', 
+	'WORMHOLE', 
+	'STAR' 
+];
 var currentWord;
 var currentLetters = [];
 
-var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
-'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var alphabet = [
+	'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
+	'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+];
 var userGuess;
 var newGuesses = []; 
 var correctGuesses = [];
@@ -18,7 +46,7 @@ var wins = 0;
 var losses = 0;
 
 
-// At start of game
+// START OR RESET GAME
 function startUp() {
 	// Clear arrays
 	answerArray = [];
@@ -36,14 +64,14 @@ function startUp() {
 	console.log("New word: " + currentWord + " " + currentLetters);
 
 	// Display corresponding number of spaces
-  	for (var i = 0; i < currentLetters.length; i++) {
+  	for (var i = 0; i < currentWord.length; i++) {
     	answerArray[i] = "_";
 	}
 	document.getElementById("word-spaces").innerHTML = answerArray.join(" ");
 
-	// Reset variables upon word generation
+	// Reset variables
 	// Set amount of letters left to guess to word length
-	remainingLetters = currentLetters.length;
+	remainingLetters = currentWord.length;
 	guessesRemaining = 15;
 	document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
 }
@@ -62,7 +90,7 @@ document.onkeyup = function(event) {
 
 		// Store in array 'newGuesses'
 		newGuesses.push(userGuess);
-		console.log("New valid guesses: " + newGuesses);
+		console.log("Valid new guesses: " + newGuesses);
 
 		// Remove a remaining guess
 		guessesRemaining--;
@@ -71,9 +99,8 @@ document.onkeyup = function(event) {
 		// CHECK FOR MATCHES
 		// If guess is not a match
 		if (currentLetters.indexOf(userGuess) == -1) {
-			// Store letter in 'incorrectGuesses' array
+			// Store letter in 'incorrectGuesses' array and display on screen
 			incorrectGuesses.push(userGuess);
-			// Display in 'Letters Already Guessed' area on screen
 			document.getElementById("incorrect-guesses").innerHTML = incorrectGuesses.join(" ");
 		}
 		// If guess is a match
@@ -84,11 +111,14 @@ document.onkeyup = function(event) {
 
 			// Convert '_' to letter
 			for (var j = 0; j < currentWord.length; j++) {
+				// When guess matches letter at index 'j'
 				if (currentLetters[j] === userGuess) {
+					// Store guess in answer array at index 'j' and display on screen
 					answerArray[j] = userGuess;
+					// There is one less letter to guess
 					remainingLetters--;
 					document.getElementById("word-spaces").innerHTML = answerArray.join(" ");
-					console.log(remainingLetters);
+					console.log("Remaining Letters: " + remainingLetters);
 					console.log("Answer Array: " + answerArray);
 				}
 			}
