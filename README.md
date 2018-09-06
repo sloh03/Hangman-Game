@@ -1,4 +1,4 @@
-# Hangman-Game
+# Hangman Game
 
 ## [LIVE DEMO](https://sloh03.github.io/hangman-game/)
 
