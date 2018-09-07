@@ -3,7 +3,7 @@
 ## [LIVE DEMO](https://sloh03.github.io/hangman-game/)
 
 ## The Game
-The theme of the game is space, all words are related to the space theme. When the user lands on the page, they have 15 guesses to try to reveal the hidden word. When the user reveals the word or runs out of guess, the game automatically restarts. Wins and losses are displayed for the player.
+The theme of the game is *space*, all words are related to the space theme. When the user lands on the page, they have 15 guesses to try to reveal the hidden word. When the user reveals the word or runs out of guess, the game automatically restarts. Wins and losses are displayed for the player.
 
 ![Alt text](images/1hangman2.jpg?raw=true "GameScreen")
 
